@@ -8,8 +8,12 @@ import ketai.net.nfc.record.*;
 import ketai.net.wifidirect.*;
 import ketai.sensors.*;
 import ketai.ui.*;
+import android.app.Activity;
+import android.content.Context;
 
+Context context;
 KetaiCamera cam;
+Activity act;
 
 PImage newImage;
 
@@ -17,8 +21,8 @@ void setup()
 {
   noStroke();
   size(displayWidth, displayHeight, P2D);
-  orientation(PORTRAIT);
-  imageMode(CENTER);
+  orientation(LANDSCAPE);
+  imageMode(CORNER);
   cam = new KetaiCamera(this, width, height, 60);
 }
 
@@ -26,19 +30,16 @@ void draw()
 {
   background(#212121);
   fill(#EEEEEE);
-  ellipse(displayWidth/2, (displayHeight/8)*7, displayWidth*0.2, displayWidth*0.2);
+  ellipse((displayWidth/8)*7, (displayHeight/2)*7, displayWidth*0.2, displayWidth*0.2);
   if(cam.isStarted())
   {
-    translate(width/2, height/2);
-    rotate(HALF_PI);
-    image(cam, displayWidth/2, 0, displayWidth, (displayHeight/4)*3);
+    image(cam, 0, 0, (displayWidth/4)*3, displayHeight/4);
   } else {
     cam.start();
   }
   if(mousePressed == true)
   {
     newImage = cam.get();
-    // image(newImage, 0, 0, displayWidth, displayHeight);
   }
 }
 
