@@ -18,7 +18,7 @@ void setup()
   noStroke();
   size(displayWidth, displayHeight, P2D);
   orientation(PORTRAIT);
-  imageMode(CENTER);
+  imageMode(CORNER);
   cam = new KetaiCamera(this, width, height, 60);
 }
 
@@ -29,9 +29,9 @@ void draw()
   ellipse(displayWidth/2, (displayHeight/8)*7, displayWidth*0.2, displayWidth*0.2);
   if(cam.isStarted())
   {
-    translate(width/2, height/2);
-    rotate(HALF_PI);
-    image(cam, displayWidth/2, 0, displayWidth, (displayHeight/4)*3);
+    //translate(width/2, height/2);
+    //rotate(HALF_PI);
+    image(cam, 0, 0, displayWidth, (displayHeight/4)*3);
   } else {
     cam.start();
   }
